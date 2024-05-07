@@ -1,17 +1,27 @@
 import React from 'react';
 import { useState } from 'react';
-
+import { useLocation } from 'react-router-dom';
 
 function Home(){
+    const Location=useLocation();
+    const queryParams=new URLSearchParams(Location.search);
+    const email=queryParams.get('email');
+    const password=queryParams.get('password');
+    console.log(email);
+    console.log(password)
     const [text , setText]=useState('');
 
     const handleChange=()=>{
         setText()
     }
+    const localEmail=localStorage.getItem("email")
+    const localPassword=localStorage.getItem("password")
+    console.log(localEmail);
+    console.log(localPassword);
     return (
         <>
         <div className='holePage'>
-            <h3>Welcome </h3>
+            <h3>Welcome {localEmail}</h3>
             <div className='left' >
                 <div >
                      <h1>DMN Table:</h1>
@@ -31,6 +41,11 @@ function Home(){
                             <li>Rule book Tests</li>
                         </ul>
                     </div>
+                    
+            </div>
+             <div>
+                <p>Email: {email}</p>
+                <p>Password: {password}</p>
             </div>
         </div>
         </>
